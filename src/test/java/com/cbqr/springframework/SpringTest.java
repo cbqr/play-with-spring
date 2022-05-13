@@ -1,6 +1,8 @@
 package com.cbqr.springframework;
 
 import com.cbqr.springframework.bean.UserService;
+import com.cbqr.springframework.beans.factory.config.BeanDefinition;
+import com.cbqr.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.junit.Test;
 
 /**
@@ -14,15 +16,19 @@ public class SpringTest {
     @Test
     public void testBeanFactory() {
         // 初始化 BeanFactory
-        BeanFactory beanFactory = new BeanFactory();
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
         // 注册 bean
-        BeanDefinition beanDefinition = new BeanDefinition(new UserService());
+        BeanDefinition beanDefinition = new BeanDefinition(UserService.class);
         beanFactory.registerBeanDefinition("userService", beanDefinition);
 
-        // 获取 bean
+        // 第一次获取 bean
         UserService userService = (UserService) beanFactory.getBean("userService");
         userService.queryUserInfo();
+
+        // 第二次获取 bean from Singleton
+        UserService userService_singleton = (UserService) beanFactory.getSingleton("userService");
+        userService_singleton.queryUserInfo();
     }
 
 }

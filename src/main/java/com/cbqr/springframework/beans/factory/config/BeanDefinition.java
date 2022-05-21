@@ -6,7 +6,6 @@ package com.cbqr.springframework.beans.factory.config;
  * @author Dave Liu
  * @since 2022-05-13
  */
-@SuppressWarnings("rawtypes")
 public class BeanDefinition {
 
     private Class beanClass;

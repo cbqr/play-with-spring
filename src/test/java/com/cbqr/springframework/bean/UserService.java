@@ -1,17 +1,30 @@
 package com.cbqr.springframework.bean;
 
+import com.cbqr.springframework.beans.factory.DisposableBean;
+import com.cbqr.springframework.beans.factory.InitializingBean;
+
 /**
  * UserService 对象，方便后续对 Spring 容器进行测试
  *
  * @author Dave Liu
  * @since 2022-05-13
  */
-public class UserService {
+public class UserService implements InitializingBean, DisposableBean {
 
     private String uId;
     private String company;
     private String location;
     private UserDao userDao;
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("执行：UserService.destroy");
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("执行：UserService.afterPropertiesSet");
+    }
 
     public String queryUserInfo() {
         return userDao.queryUserName(uId) + "," + company + "," + location;

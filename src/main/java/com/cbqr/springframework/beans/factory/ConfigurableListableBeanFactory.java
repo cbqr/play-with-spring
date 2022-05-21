@@ -3,6 +3,7 @@ package com.cbqr.springframework.beans.factory;
 import com.cbqr.springframework.beans.BeansException;
 import com.cbqr.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import com.cbqr.springframework.beans.factory.config.BeanDefinition;
+import com.cbqr.springframework.beans.factory.config.BeanPostProcessor;
 import com.cbqr.springframework.beans.factory.config.ConfigurableBeanFactory;
 
 /**
@@ -16,5 +17,9 @@ import com.cbqr.springframework.beans.factory.config.ConfigurableBeanFactory;
 public interface ConfigurableListableBeanFactory extends ListableBeanFactory, AutowireCapableBeanFactory, ConfigurableBeanFactory {
 
     BeanDefinition getBeanDefinition(String beanName) throws BeansException;
+
+    void preInstantiateSingletons() throws BeansException;
+
+    void addBeanPostProcessor(BeanPostProcessor beanPostProcessor);
 
 }

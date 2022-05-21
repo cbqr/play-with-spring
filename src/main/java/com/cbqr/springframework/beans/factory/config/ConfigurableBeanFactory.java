@@ -1,6 +1,7 @@
 package com.cbqr.springframework.beans.factory.config;
 
 import com.cbqr.springframework.beans.factory.BeanFactory;
+import com.cbqr.springframework.beans.factory.HierarchicalBeanFactory;
 
 /**
  * Configuration interface to be implemented by most bean factories. Provides
@@ -11,10 +12,12 @@ import com.cbqr.springframework.beans.factory.BeanFactory;
  * @author Dave Liu
  * @since 2022-05-21
  */
-public interface ConfigurableBeanFactory {
+public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, SingletonBeanRegistry {
 
     String SCOPE_SINGLETON = "singleton";
 
     String SCOPE_PROTOTYPE = "prototype";
+
+    void addBeanPostProcessor(BeanPostProcessor beanPostProcessor);
 
 }

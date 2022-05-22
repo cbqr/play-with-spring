@@ -20,6 +20,12 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 
     private final Map<String, DisposableBean> disposableBeans = new HashMap<>();
 
+    /**
+     * Internal marker for a null singleton object:
+     * used as marker value for concurrent Maps (which don't support null values).
+     */
+    protected static final Object NULL_OBJECT = new Object();
+
     @Override
     public Object getSingleton(String beanName) {
         return singletonObjects.get(beanName);

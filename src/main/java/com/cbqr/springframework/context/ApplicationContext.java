@@ -1,6 +1,8 @@
 package com.cbqr.springframework.context;
 
+import com.cbqr.springframework.beans.factory.HierarchicalBeanFactory;
 import com.cbqr.springframework.beans.factory.ListableBeanFactory;
+import com.cbqr.springframework.core.io.ResourceLoader;
 
 /**
  * Central interface to provide configuration for an application.
@@ -12,7 +14,7 @@ import com.cbqr.springframework.beans.factory.ListableBeanFactory;
  * @author Dave Liu
  * @since 2022-05-21
  */
-public interface ApplicationContext extends ListableBeanFactory {
+public interface ApplicationContext extends ListableBeanFactory, HierarchicalBeanFactory, ResourceLoader, ApplicationEventPublisher {
 
 
 
